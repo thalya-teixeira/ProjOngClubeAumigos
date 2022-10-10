@@ -17,6 +17,12 @@ namespace ProjOngClubeAumigos.Repository
         List<Animal> GetAllNum_Chip();
 
         public bool VerifChip(int Num_Chip);
-       
+
+        public Animal GetAnimal(int Num_Chip);
+
+        public bool Update(Animal animal);
+
+        public bool Delete(Animal animal);
+
     }
 }

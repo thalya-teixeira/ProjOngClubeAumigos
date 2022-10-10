@@ -94,7 +94,7 @@ namespace ProjOngClubeAumigos
                     Console.WriteLine("Opção inválida!");
                 }
 
-            } while (op != "1" && op != "2" && op != "3" && op != "4" &&  op != "0");
+            } while (op != "1" && op != "2" && op != "3" && op != "4" && op != "0");
 
             switch (op)
             {
@@ -150,6 +150,8 @@ namespace ProjOngClubeAumigos
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 1 : Cadastrar Animal                         |");
                 Console.WriteLine("|   opção 2 : Buscar Lista de Animal                   |");
+                Console.WriteLine("|   opção 3 : Alterar Cadastro de Animal               |");
+                Console.WriteLine("|   opção 4 : Deletar Cadastro de Animal               |");
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 0 : Sair                                     |");
                 Console.WriteLine("|______________________________________________________|");
@@ -158,13 +160,13 @@ namespace ProjOngClubeAumigos
                 op = Console.ReadLine();
                 if (op == "0")
                     return;
-                if (op != "1" && op != "2" && op != "0")
+                if (op != "1" && op != "2" && op != "3" && op != "4" && op != "0")
                 {
                     Console.Clear();
                     Console.WriteLine("Opção inválida!");
                 }
 
-            } while (op != "1" && op != "2" && op != "0");
+            } while (op != "1" && op != "2" && op != "3" && op != "4" && op != "0");
 
             switch (op)
             {
@@ -181,6 +183,20 @@ namespace ProjOngClubeAumigos
                     new AnimalService().GetAll().ForEach(x => Console.WriteLine(x));
                     Console.WriteLine("Aperte ENTER para retornar ao menu");
                     Console.ReadKey();
+                    Menu();
+                    break;
+
+                case "3":
+                    animal.UpdateAnimal();
+                    new AnimalService().GetAll().ForEach(x => Console.WriteLine(x));
+                    Console.Clear();
+                    Menu();
+                    break;
+
+                case "4":
+                    animal.DeleteAnimal();
+                    new AnimalService().GetAll().ForEach(x => Console.WriteLine(x));
+                    Console.Clear();
                     Menu();
                     break;
 
@@ -252,7 +268,7 @@ namespace ProjOngClubeAumigos
 
         static void Main(string[] args)
         {
-            
+
             Menu();
         }
     }

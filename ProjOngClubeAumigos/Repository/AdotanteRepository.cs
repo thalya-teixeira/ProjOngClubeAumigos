@@ -25,17 +25,16 @@ namespace ProjOngClubeAumigos.Repository
         {
             //throw faz com que eu não precise ter um retur; throw lançando uma exceção; throw new NotImplementedException();
 
-            //bool result = false;
-
+            bool result = false;
             using (var db = new SqlConnection(_conn))
             {
 
                 db.Open();
                 db.Execute(Adotante.INSERT, adotante); //dapper linha referente ao insert no banco de dados
-                return true;
+                result = true;
                 //nao preciso de um close se estou usando o using; objeto de conexão db é destruido apos a utilização do using
             }
-            return false;
+            return result;
         }
         #endregion
 
@@ -101,23 +100,25 @@ namespace ProjOngClubeAumigos.Repository
 
         public bool Update(Adotante adotante)
         {
+            bool result = false;
             using (var db = new SqlConnection(_conn))
             {
                 db.Open();
                 db.Execute(Adotante.UPDATE, adotante);
-                return true;
+                result = true;
             }
-            return false;
+            return result;
         }
         public bool Delete(Adotante adotante)
         {
+            bool result = false;
             using (var db = new SqlConnection(_conn))
             {
                 db.Open();
                 db.Execute(Adotante.DELETE + adotante.CPF, adotante);
-                return true;
+                result = true;
             }
-            return false;
+            return result;
         }
     }
 }

@@ -37,5 +37,19 @@ namespace ProjOngClubeAumigos.Service
             return _animalRepository.VerifChip(Num_Chip);
         }
 
+        public Animal GetAnimal(int Num_Chip)
+        {
+            return _animalRepository.GetAnimal(Num_Chip);
+        }
+
+        public bool Update(Animal animal)
+        {
+            return _animalRepository.Update(animal);
+        }
+
+        public bool Delete(Animal animal)
+        {
+            return _animalRepository.Delete(animal);
+        }
     }
 }

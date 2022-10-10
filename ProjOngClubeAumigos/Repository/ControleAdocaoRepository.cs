@@ -22,15 +22,16 @@ namespace ProjOngClubeAumigos.Repository
 
         public bool Add(ControleAdocao adocao)
         {
+            bool result = false;
             using (var db = new SqlConnection(_conn))
             {
 
                 db.Open();
                 db.Execute(ControleAdocao.INSERT, adocao); //dapper linha referente ao insert no banco de dados
-                return true;
+                result = true;
                 //nao preciso de um close se estou usando o using; objeto de conexão db é destruido apos a utilização do using
             }
-            return false;
+            return result;
         }
 
         public List<ControleAdocao> GetAll()
