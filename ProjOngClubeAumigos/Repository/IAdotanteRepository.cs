@@ -12,10 +12,16 @@ namespace ProjOngClubeAumigos.Repository
         //declaração dos métodos (contratos)
         bool Add(Adotante adotante);
 
+        bool Update(Adotante adotante);
+
         bool VerifCPF(string CPF);
         
         List<Adotante> GetAll();
 
         List<Adotante> GetAllCPF();
+
+        Adotante GetAdotante(string CPF);
+
+        public bool Delete(Adotante adotante);
     }
 }

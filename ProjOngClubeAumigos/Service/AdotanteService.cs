@@ -40,5 +40,20 @@ namespace ProjOngClubeAumigos.Service
         {
             return _adotanteRepository.VerifCPF(CPF);
         }
+
+        public Adotante GetAdotante(string CPF)
+        {
+            return _adotanteRepository.GetAdotante(CPF);
+        }
+
+        public bool Update(Adotante adotante)
+        {
+            return _adotanteRepository.Update(adotante);
+        }
+
+        public bool Delete(Adotante adotante)
+        {
+            return _adotanteRepository.Delete(adotante);
+        }
     }
 }

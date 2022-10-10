@@ -15,5 +15,8 @@ namespace ProjOngClubeAumigos.Repository
         List<Animal> GetAll();
 
         List<Animal> GetAllNum_Chip();
+
+        public bool VerifChip(int Num_Chip);
+       
     }
 }

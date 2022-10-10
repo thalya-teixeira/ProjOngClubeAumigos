@@ -74,13 +74,12 @@ namespace ProjOngClubeAumigos
             do
             {
 
-                Console.WriteLine("\n|°°°°°°°°°°°°°°°°°°° MENU ADOTANTE °°°°°°°°°°°°°°°°°°|");
+                Console.WriteLine("\n|°°°°°°°°°°°°°°°°°°°° MENU ADOTANTE °°°°°°°°°°°°°°°°°°°|");
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 1 : Cadastrar Adotante                       |");
-                Console.WriteLine("|   opção 2 : Buscar Adotante Específico               |");
-                Console.WriteLine("|   opção 3 : Buscar Lista de Adotantes                |");
-                Console.WriteLine("|   opção 4 : Editar Dados Adotantes                   |");
-                Console.WriteLine("|   opção 5 : Deletar Algum Adotante Específico        |");
+                Console.WriteLine("|   opção 2 : Buscar Lista de Adotantes                |");
+                Console.WriteLine("|   opção 3 : Editar Dados Adotantes                   |");
+                Console.WriteLine("|   opção 4 : Deletar Algum Adotante Específico        |");
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 0 : Sair                                     |");
                 Console.WriteLine("|______________________________________________________|");
@@ -89,13 +88,13 @@ namespace ProjOngClubeAumigos
                 op = Console.ReadLine();
                 if (op == "0")
                     return;
-                if (op != "1" && op != "2" && op != "3" && op != "4" && op != "5" && op != "0")
+                if (op != "1" && op != "2" && op != "3" && op != "4" && op != "0")
                 {
                     Console.Clear();
                     Console.WriteLine("Opção inválida!");
                 }
 
-            } while (op != "1" && op != "2" && op != "3" && op != "4" && op != "5" &&  op != "0");
+            } while (op != "1" && op != "2" && op != "3" && op != "4" &&  op != "0");
 
             switch (op)
             {
@@ -107,20 +106,24 @@ namespace ProjOngClubeAumigos
                     break;
 
                 case "2":
-                    new AdotanteService().GetAllCPF().ForEach(x => Console.WriteLine(x.CPF));
-                    Console.ReadKey();
                     Console.Clear();
+                    Console.WriteLine("\n\t >>> Lista de Adotantes Cadastrados <<<\n");
+                    new AdotanteService().GetAll().ForEach(x => Console.WriteLine(x));
+                    Console.WriteLine("Aperte ENTER para retornar ao menu");
+                    Console.ReadKey();
                     Menu();
                     break;
 
                 case "3":
+                    adotante.UpdateAdotante();
                     new AdotanteService().GetAll().ForEach(x => Console.WriteLine(x));
-                    Console.ReadKey();
                     Console.Clear();
                     Menu();
                     break;
 
                 case "4":
+                    adotante.DeleteAdotante();
+                    new AdotanteService().GetAll().ForEach(x => Console.WriteLine(x));
                     Console.Clear();
                     Menu();
                     break;
@@ -143,13 +146,10 @@ namespace ProjOngClubeAumigos
             do
             {
 
-                Console.WriteLine("\n|°°°°°°°°°°°°°°°°°°° MENU ANIMAL °°°°°°°°°°°°°°°°°°|");
+                Console.WriteLine("\n|°°°°°°°°°°°°°°°°°°°°° MENU ANIMAL °°°°°°°°°°°°°°°°°°°°|");
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 1 : Cadastrar Animal                         |");
-                Console.WriteLine("|   opção 2 : Buscar Animal Específico                 |");
-                Console.WriteLine("|   opção 3 : Buscar Lista de Animal                   |");
-                Console.WriteLine("|   opção 4 : Editar Dados Animal                      |");
-                Console.WriteLine("|   opção 5 : Deletar Algum Animal Específico          |");
+                Console.WriteLine("|   opção 2 : Buscar Lista de Animal                   |");
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 0 : Sair                                     |");
                 Console.WriteLine("|______________________________________________________|");
@@ -158,13 +158,13 @@ namespace ProjOngClubeAumigos
                 op = Console.ReadLine();
                 if (op == "0")
                     return;
-                if (op != "1" && op != "2" && op != "3" && op != "4" && op != "5" && op != "0")
+                if (op != "1" && op != "2" && op != "0")
                 {
                     Console.Clear();
                     Console.WriteLine("Opção inválida!");
                 }
 
-            } while (op != "1" && op != "2" && op != "3" && op != "4" && op != "5" && op != "0");
+            } while (op != "1" && op != "2" && op != "0");
 
             switch (op)
             {
@@ -176,21 +176,11 @@ namespace ProjOngClubeAumigos
                     break;
 
                 case "2":
-                    new AnimalService().GetAllNum_Chip().ForEach(x => Console.WriteLine(x.Num_Chip));
-                    Console.ReadKey();
                     Console.Clear();
-                    Menu();
-                    break;
-
-                case "3":
+                    Console.WriteLine("\n\t >>> Lista de Animais Cadastrados <<<\n");
                     new AnimalService().GetAll().ForEach(x => Console.WriteLine(x));
+                    Console.WriteLine("Aperte ENTER para retornar ao menu");
                     Console.ReadKey();
-                    Console.Clear();
-                    Menu();
-                    break;
-
-                case "4":
-                    Console.Clear();
                     Menu();
                     break;
 
@@ -212,7 +202,7 @@ namespace ProjOngClubeAumigos
             do
             {
 
-                Console.WriteLine("\n|°°°°°°°°°°°°°° MENU CONTROLE DE ADOÇÃO °°°°°°°°°°°°°|");
+                Console.WriteLine("\n|°°°°°°°°°°°°°°°° MENU CONTROLE DE ADOÇÃO °°°°°°°°°°°°°°|");
                 Console.WriteLine("|                                                      |");
                 Console.WriteLine("|   opção 1 : Cadastrar Adoção                         |");
                 Console.WriteLine("|   opção 2 : Buscar Lista de Adoções                  |");
@@ -244,9 +234,11 @@ namespace ProjOngClubeAumigos
                     break;
 
                 case "2":
-                    new Controle_AdocaoService().GetAll().ForEach(x => Console.WriteLine(x));
-                    Console.ReadKey();
                     Console.Clear();
+                    Console.WriteLine("\n\t >>> Lista de Adoções Cadastradas <<<\n");
+                    new Controle_AdocaoService().GetAll().ForEach(x => Console.WriteLine(x));
+                    Console.WriteLine("Aperte ENTER para retornar ao menu");
+                    Console.ReadKey();
                     Menu();
                     break;
 
@@ -260,27 +252,7 @@ namespace ProjOngClubeAumigos
 
         static void Main(string[] args)
         {
-            //Console.WriteLine("Start");
-
-            //Adotante adotante = new Adotante()
-            //{
-            //    CPF = "35671013828",
-            //    Nome = "Thalya",
-            //    Sexo = "Fem",
-            //    DataNasc = DateTime.Parse("25/10/97"),
-            //    Telefone = "16981000500",
-            //    Logradouro = "Rua Humaita",
-            //    Numero = "430",
-            //    Complemento = "b",
-            //    Bairro = "Artico",
-            //    Cidade = "Araraquara",
-            //    Estado = "SP"
-            //};
-
-            //new AdotanteService().Add(adotante);
-            //new AdotanteService().GetAll().ForEach(x => Console.WriteLine(x));
-
-            //Console.WriteLine("Oba!");
+            
             Menu();
         }
     }

@@ -50,5 +50,19 @@ namespace ProjOngClubeAumigos.Repository
                 return (List<Animal>)animal;
             }
         }
+
+        public bool VerifChip(int Num_Chip)
+        {
+
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var retorno = db.ExecuteScalar(Animal.SELECTCHIP + $"{Num_Chip}");
+                if (retorno != null) return true;
+                else return false;
+            }
+            return false;
+        }
+
     }
 }

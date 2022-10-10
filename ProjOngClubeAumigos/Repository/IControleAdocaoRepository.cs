@@ -14,6 +14,6 @@ namespace ProjOngClubeAumigos.Repository
 
         List<ControleAdocao> GetAll();
 
-        List<ControleAdocao> GetAllCPF();
+        //List<ControleAdocao> GetAllCPF();
     }
 }

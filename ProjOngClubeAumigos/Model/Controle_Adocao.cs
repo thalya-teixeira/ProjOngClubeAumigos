@@ -43,6 +43,7 @@ namespace ProjOngClubeAumigos.Model
 
             Console.WriteLine("\n\t >>> Lista de CHIPs cadastrados <<<");
             new AnimalService().GetAllNum_Chip().ForEach(x => Console.WriteLine(x.Num_Chip));
+
             Console.Write("\nInforme o número de identificação do animal: ");
             Num_Chip = int.Parse(Console.ReadLine());
             
@@ -50,5 +51,7 @@ namespace ProjOngClubeAumigos.Model
 
             Console.WriteLine("Pressione ENTER para continuar...");
         }
+
+
     }
 }

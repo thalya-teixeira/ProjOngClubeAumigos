@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjOngClubeAumigos.Service;
 
 namespace ProjOngClubeAumigos.Model
 {
@@ -26,6 +27,8 @@ namespace ProjOngClubeAumigos.Model
 
         public readonly static string UPDATE_NOME = "UPDATE Animal SET Nome= @Nome WHERE Num_Chip=@Num_Chip";
 
+        public readonly static string SELECTCHIP = $"SELECT Num_Chip FROM Animal WHERE Num_Chip = ";
+
         //public readonly static string UPDATE = "UPDATE Adotante SET Num_Chip = Num_Chip = @Num_Chip, Familia = @Familia, Raca = @Raca, Sexo = @Sexo, Nome = @Novo";
 
         //public readonly static string DELETEONE = "DELETE FROM Animal WHERE Num_Chip = @Num_Chip";
@@ -48,70 +51,19 @@ namespace ProjOngClubeAumigos.Model
             Console.Clear();
             Console.WriteLine("\n\t>>> CADASTRO DO ANIMAL <<<");
 
-            do
-            {
-                Console.Write("Informe a família [cachorro, gato, papagaio...]: ");
-                Familia = Console.ReadLine();
-                if (Familia.Length == 0)
-                {
-                    Console.WriteLine("Campo obrigatório!");
-                }
-                if (Familia.Length > 30)
-                {
-                    Console.WriteLine("Informe um nome de família com menos de 50 caracteres!");
-                }
-            } while (Familia.Length > 30 || Familia.Length == 0);
+            if (!CadastrarFamilia()) return;
 
-            do
-            {
-                Console.Write("Informe a raça: ");
-                Raca = Console.ReadLine();
-                if (Raca.Length == 0)
-                {
-                    Console.WriteLine("Raça opcional!");
-                }
-                if (Raca.Length > 30)
-                {
-                    Console.WriteLine("Informe uma raça com menos de 50 caracteres!");
-                }
-            } while (Raca.Length > 30 || Raca.Length == 0);
+            if (!CadastrarRaca()) return;
 
-            do
-            {
-                Console.Write("Sexo [F] Feminino [M] Masculino [N] Prefere não informar: ");
-                Sexo = new TratamentoDado().TratarDado(Console.ReadLine().ToLower().ToUpper().Trim());
-                if (Sexo == "0")
-                    return;
-                if (Sexo != "M" && Sexo != "N" && Sexo != "F")
-                {
-                    Console.WriteLine("Digite um opção válida!!!");
-                }
-            } while (Sexo != "M" && Sexo != "N" && Sexo != "F");
+            if (!CadastrarSexo()) return;
 
-            do
-            {
-                Console.Write("Informe o nome: ");
-                Nome = Console.ReadLine();
-                if (Nome.Length == 0)
-                {
-                    Console.WriteLine("Nome opcional!");
-                }
-                if (Nome.Length > 50)
-                {
-                    Console.WriteLine("Informe nome com menos de 50 caracteres!");
-                }
-            } while (Nome.Length > 50 || Nome.Length == 0);
-
+            if (!CadastrarNome()) return;
         }
         #endregion
 
-        #region Editar Animal
-        public void UpdateAnimal()
+        #region Familia
+        private bool CadastrarFamilia()
         {
-            Console.Clear();
-            Console.Write("Digite o nome que deseja alterar o contato: ");
-            string alt = Console.ReadLine();
-
             do
             {
                 Console.Write("Informe a família [cachorro, gato, papagaio...]: ");
@@ -125,7 +77,13 @@ namespace ProjOngClubeAumigos.Model
                     Console.WriteLine("Informe um nome de família com menos de 50 caracteres!");
                 }
             } while (Familia.Length > 30 || Familia.Length == 0);
+            return true;
+        }
+        #endregion
 
+        #region Raça
+        private bool CadastrarRaca()
+        {
             do
             {
                 Console.Write("Informe a raça: ");
@@ -139,34 +97,73 @@ namespace ProjOngClubeAumigos.Model
                     Console.WriteLine("Informe uma raça com menos de 50 caracteres!");
                 }
             } while (Raca.Length > 30 || Raca.Length == 0);
+            return true;
+        }
+        #endregion
 
+        #region Sexo
+        private bool CadastrarSexo()
+        {
             do
             {
-                Console.Write("Sexo [F] Feminino [M] Masculino [N] Prefere não informar: ");
-                Sexo = new TratamentoDado().TratarDado(Console.ReadLine().ToLower().ToUpper().Trim());
+                Console.Write("Informe seu sexo [M] Masculino - [F] Feminino - [N] Prefere não informar: ");
+                Sexo = new TratamentoDado().TratarDado(Console.ReadLine()).ToUpper();
                 if (Sexo == "0")
-                    return;
+                    return false;
                 if (Sexo != "M" && Sexo != "N" && Sexo != "F")
                 {
                     Console.WriteLine("Digite um opção válida!!!");
                 }
             } while (Sexo != "M" && Sexo != "N" && Sexo != "F");
+            return true;
+        }
+        #endregion
 
+        #region Nome
+        private bool CadastrarNome()
+        {
             do
             {
                 Console.Write("Informe o nome: ");
                 Nome = Console.ReadLine();
                 if (Nome.Length == 0)
                 {
-                    Console.WriteLine("Nome opcional!");
+                    Console.WriteLine("Campo obrigatório!");
                 }
-                if (Nome.Length > 50)
+                if (Nome.Length > 30)
                 {
-                    Console.WriteLine("Informe nome com menos de 50 caracteres!");
+                    Console.WriteLine("Informe um nome de família com menos de 50 caracteres!");
                 }
-            } while (Nome.Length > 50 || Nome.Length == 0);
-
+            } while (Nome.Length > 30 || Nome.Length == 0);
+            return true;
         }
         #endregion
+
+        //#region VerificaCHIP
+        //private bool VerificarChip()
+        //{
+        //    do
+        //    {
+        //        Console.Write("Informe seu Número CHIP: ");
+        //        try
+        //        {
+        //            Num_Chip = int.Parse(new TratamentoDado().TratarDado(Console.ReadLine()));
+        //        }
+        //        catch { Console.WriteLine("Dado inválido"); Num_Chip = -1; }
+
+
+        //        if (Num_Chip == 0)
+        //            return false;
+        //        bool verifica = new AnimalService().VerifChip(Num_Chip);
+        //        if (!verifica)
+        //        {
+        //            Console.WriteLine("CHIP não cadastrado!!!");
+        //            Num_Chip = -1;
+        //        }
+
+        //    } while (Num_Chip < 1);
+        //    return true;
+        //}
+        //#endregion
     }
 }

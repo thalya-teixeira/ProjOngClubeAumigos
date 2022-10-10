@@ -38,14 +38,14 @@ namespace ProjOngClubeAumigos.Repository
             using (var db = new SqlConnection(_conn))
             {
                 db.Open();
-                var adocao = db.Query<ControleAdocao>(ControleAdocao.SELECT);
+                var adocao = db.Query<ControleAdocao>(ControleAdocao.SELECTONE);
                 return (List<ControleAdocao>)adocao;
             }
         }
 
-        public List<ControleAdocao> GetAllCPF()
-        {
-            throw new NotImplementedException();
-        }
+        //public List<ControleAdocao> GetAllCPF()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

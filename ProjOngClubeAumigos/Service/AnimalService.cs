@@ -31,5 +31,11 @@ namespace ProjOngClubeAumigos.Service
         {
             return _animalRepository.GetAllNum_Chip();
         }
+
+        public bool VerifChip(int Num_Chip)
+        {
+            return _animalRepository.VerifChip(Num_Chip);
+        }
+
     }
 }

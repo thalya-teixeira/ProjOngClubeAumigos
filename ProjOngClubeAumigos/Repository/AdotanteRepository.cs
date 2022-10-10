@@ -47,6 +47,7 @@ namespace ProjOngClubeAumigos.Repository
                 db.Open();
                 var adotante = db.Query<Adotante>(Adotante.SELECT);
                 return (List<Adotante>)adotante;
+                
             }
         }
         #endregion
@@ -58,17 +59,63 @@ namespace ProjOngClubeAumigos.Repository
                 db.Open();
                 var adotante = db.Query<Adotante>(Adotante.SELECT);
                 return (List<Adotante>)adotante;
+
             }
         }
 
         public bool VerifCPF(string CPF)
         {
-            using(var db = new SqlConnection(_conn))
+            using (var db = new SqlConnection(_conn))
             {
                 db.Open();
-                var retorno = db.ExecuteScalar(Adotante.SELECTCPF + $"WHERE CPF = {CPF}");
+                var retorno = db.ExecuteScalar(Adotante.SELECTCPF + CPF);
                 if (retorno != null) return true;
                 else return false;
+            }
+            return false;
+        }
+
+        public Adotante GetAdotante(string CPF)
+        {
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                var dados = db.Query<Adotante>(Adotante.SELECT + $" WHERE CPF = {CPF}");
+                Adotante adotante = new()
+                {
+                    CPF = dados.First().CPF,
+                    Nome = dados.First().Nome,
+                    Sexo = dados.First().Sexo,
+                    DataNasc = dados.First().DataNasc,
+                    Telefone = dados.First().Telefone,
+                    Logradouro = dados.First().Logradouro,
+                    Numero = dados.First().Numero,
+                    Complemento = dados.First().Complemento,
+                    Bairro = dados.First().Bairro,
+                    Cidade = dados.First().Cidade,
+                    Estado = dados.First().Estado,
+                };
+                return adotante;
+            }
+        }
+
+        public bool Update(Adotante adotante)
+        {
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                db.Execute(Adotante.UPDATE, adotante);
+                return true;
+            }
+            return false;
+        }
+        public bool Delete(Adotante adotante)
+        {
+            using (var db = new SqlConnection(_conn))
+            {
+                db.Open();
+                db.Execute(Adotante.DELETE + adotante.CPF, adotante);
+                return true;
             }
             return false;
         }
