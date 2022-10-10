@@ -160,6 +160,7 @@ namespace ProjOngClubeAumigos.Model
 
             }
             new AdotanteService().Update(adotante);
+            Console.WriteLine("\nPressione ENTER para retornar ao menu...");
             Console.ReadKey();
         }
         #endregion

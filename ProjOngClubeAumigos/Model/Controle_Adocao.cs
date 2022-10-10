@@ -49,7 +49,7 @@ namespace ProjOngClubeAumigos.Model
             
             DataAdocao = DateTime.Now;
 
-            Console.WriteLine("Pressione ENTER para continuar...");
+            Console.WriteLine("\nPressione ENTER para retornar ao menu...");
         }
 
 

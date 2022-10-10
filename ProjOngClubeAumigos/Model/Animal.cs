@@ -188,6 +188,7 @@ namespace ProjOngClubeAumigos.Model
 
             }
             new AnimalService().Update(animal);
+            Console.WriteLine("Pressione ENTER para retornar ao menu...");
             Console.ReadKey();
         }
         #endregion
